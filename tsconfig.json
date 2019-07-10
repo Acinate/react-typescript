@@ -10,6 +10,7 @@
     "jsx": "react",
     "allowJs": true,
     "baseUrl": "./",
+    "outDir": "dist",
     "paths": {
       "components/*": ["src/components/*"]
     }

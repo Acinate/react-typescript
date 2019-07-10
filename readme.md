@@ -38,12 +38,20 @@ Add the following code to `tsconfig.json`
 ```json
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
+    "baseUrl": "./",
     "module": "commonjs",
     "target": "es6",
-    "jsx": "react"
+    "lib": ["es2015", "es2017", "dom"],
+    "jsx": "react",
+    "outDir": "dist",
+    "paths": {
+      "components/*": ["src/components/*"]
+    },
+    "allowJs": true,
+    "allowSyntheticDefaultImports": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "sourceMap": true
   }
 }
 ```
@@ -64,8 +72,6 @@ export interface HelloProps {
   framework: string;
 }
 
-// 'HelloProps' describes the shape of props.
-// State is never set so we use the '{}' type.
 export class Hello extends React.Component<HelloProps, {}> {
   render() {
     return (
@@ -91,7 +97,7 @@ import { Hello } from "./components/Hello";
 
 ReactDOM.render(
   <Hello compiler="TypeScript" framework="React" />,
-  document.getElementById("example")
+  document.getElementById("root")
 );
 ```
 
@@ -106,17 +112,18 @@ Add the following markup to `index.html`
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello React!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React & Typescript</title>
   </head>
   <body>
-    <div id="example"></div>
+    <div id="root"></div>
 
     <!-- Dependencies -->
     <script src="./node_modules/react/umd/react.development.js"></script>
     <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
 
-    <!-- Main -->
-    <script src="./dist/main.js"></script>
+    <!-- Bundle.js -->
+    <script src="./dist/bundle.js"></script>
   </body>
 </html>
 ```
@@ -130,17 +137,20 @@ Create webpack configuration file
 Add the following code to `webpack.config.js`
 
 ```javascript
+const path = require("path");
+
 module.exports = {
-  mode: "production",
-
-  // Enable sourcemaps for debugging webpack's output.
-  devtool: "source-map",
-
+  mode: "development",
+  entry: "./src/index.tsx",
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx"]
+    extensions: [".ts", ".tsx", ".js"]
   },
-
+  output: {
+    path: path.join(__dirname, "dist"),
+    publicPath: "/dist/",
+    filename: "bundle.js"
+  },
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -152,7 +162,6 @@ module.exports = {
           }
         ]
       },
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {
         enforce: "pre",
         test: /\.js$/,
@@ -160,11 +169,6 @@ module.exports = {
       }
     ]
   },
-
-  // When importing a module whose path matches one of the following, just
-  // assume a corresponding global variable exists and use that instead.
-  // This is important because it allows us to avoid bundling all of our
-  // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
     react: "React",
     "react-dom": "ReactDOM"
@@ -183,3 +187,22 @@ module.exports = {
 Install webpack-dev-server
 
 `npm install --save-dev webpack-dev-server`
+
+Configure `package.json` to have the following scripts
+
+```json
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+```
+
+## RUN THE APP
+
+To start the app in your browser type
+
+npm start
+
+To build the app into your dist folder type
+
+npm run build

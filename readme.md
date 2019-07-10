@@ -5,7 +5,9 @@
 Create project root and directories
 
 `mkdir react-typescript`
+
 `cd react-typescript`
+
 `mkdir -p src/components`
 
 Initialize the project as a npm package
@@ -21,6 +23,7 @@ Install webpack
 Install react and react-dom
 
 `npm install --save react react-dom`
+
 `npm install --save-dev @types/react @types/react-dom`
 
 Install webpack loaders
@@ -176,12 +179,6 @@ module.exports = {
 };
 ```
 
-## RUNNING THE REACT APPLICATION
-
-### BUILD THE APPLICATION WITH WEBPACK
-
-`npx webpack`
-
 ## SETUP WEBPACK DEVELOPMENT SERVER
 
 Install webpack-dev-server
@@ -201,8 +198,8 @@ Configure `package.json` to have the following scripts
 
 To start the app in your browser type
 
-npm start
+`npm start`
 
 To build the app into your dist folder type
 
-npm run build
+`npm run build`

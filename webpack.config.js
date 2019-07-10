@@ -7,7 +7,8 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"]
   },
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.join(__dirname, "dist"),
+    publicPath: "/dist/",
     filename: "main.js"
   },
   // Enable sourcemaps for debugging webpack's output.

@@ -1,6 +1,17 @@
-# SETTING UP TYPESCRIPT WITH REACTJS USING WEBPACK
+# React TypeScript with Webpack
 
-## CREATE THE PROJECT
+If you are like me and don't appreciate all the black magic that comes along with `create-react-app` or you simply just want to know how things really work when you create a react app, this guide is for you.
+
+In this guide you will learn how to configure your very own react environment. We will be configuring awesome tools like TypeScript, Sass and more in the future!
+
+### Things to implement into our project
+
+- ~~TypeScript~~
+- Sass
+- Jest
+- Environments
+
+## Create the Project
 
 Create project root and directories
 
@@ -14,7 +25,7 @@ Initialize the project as a npm package
 
 `npm init -y`
 
-## INSTALL DEPENDENCIES
+## Install Dependencies
 
 Install webpack
 
@@ -30,7 +41,7 @@ Install webpack loaders
 
 `npm install --save-dev typescript ts-loader source-map-loader`
 
-## CONFIGURE TYPESCRIPT
+## Configure Typescript
 
 Create typescript configuration file
 
@@ -59,7 +70,7 @@ Add the following code to `tsconfig.json`
 }
 ```
 
-## WRITE SOME REACT CODE
+## Write some React code
 
 Create a react component using Typescript
 
@@ -131,7 +142,7 @@ Add the following markup to `index.html`
 </html>
 ```
 
-## SETUP WEBPACK
+## Setup Webpack
 
 Create webpack configuration file
 
@@ -179,7 +190,7 @@ module.exports = {
 };
 ```
 
-## SETUP WEBPACK DEVELOPMENT SERVER
+## Setup Webpack Development Server
 
 Install webpack-dev-server
 
@@ -194,7 +205,7 @@ Configure `package.json` to have the following scripts
   },
 ```
 
-## RUN THE APP
+## Run the App
 
 To start the app in your browser type
 

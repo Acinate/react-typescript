@@ -7,7 +7,7 @@ In this guide you will learn how to configure your very own react environment. W
 ### Things to implement into our project
 
 - ~~TypeScript~~
-- Sass
+- ~~Sass~~
 - Jest
 - Express
 - Environments
@@ -221,9 +221,13 @@ To build the app into your dist folder type
 `npm install --save-dev node-sass sass-loader style-loader css-loader mini-css-extract-plugin`
 
 [node-sass](https://www.npmjs.com/package/node-sass) Provides binding for node.js to Libsass, a Sass compiler
+
 [sass-loader](https://www.npmjs.com/package/sass-loader) Loader for Webpack that compiles SCSS/Sass files
+
 [style-loader](https://www.npmjs.com/package/style-loader) Adds CSS to DOM by injecting a style tag
+
 [css-loader](https://www.npmjs.com/package/css-loader) Interprets @import and url() like import/require()
+
 [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin) Extracts CSS into seperate files (Essential for production builds)
 
 ## Add Mini-CSS-Extract-Plugin to webpack

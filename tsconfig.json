@@ -13,6 +13,7 @@
     "allowSyntheticDefaultImports": false,
     "noImplicitAny": false,
     "removeComments": true,
+    "strictNullChecks": true,
     "sourceMap": true
   }
 }

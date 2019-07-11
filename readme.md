@@ -9,6 +9,7 @@ In this guide you will learn how to configure your very own react environment. W
 - ~~TypeScript~~
 - Sass
 - Jest
+- Express
 - Environments
 
 ## Create the Project
@@ -214,3 +215,119 @@ To start the app in your browser type
 To build the app into your dist folder type
 
 `npm run build`
+
+## Install SASS Dependencies
+
+`npm install --save-dev node-sass sass-loader style-loader css-loader mini-css-extract-plugin`
+
+[node-sass](https://www.npmjs.com/package/node-sass) Provides binding for node.js to Libsass, a Sass compiler
+[sass-loader](https://www.npmjs.com/package/sass-loader) Loader for Webpack that compiles SCSS/Sass files
+[style-loader](https://www.npmjs.com/package/style-loader) Adds CSS to DOM by injecting a style tag
+[css-loader](https://www.npmjs.com/package/css-loader) Interprets @import and url() like import/require()
+[mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin) Extracts CSS into seperate files (Essential for production builds)
+
+## Add Mini-CSS-Extract-Plugin to webpack
+
+Add the following line of code to the top of `webpack.config.js`
+
+```javascript
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+```
+
+Then add the following code in the exports portion of `webpack.config.js`
+
+```javascript
+module.exports = {
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
+    })
+  ]
+};
+```
+
+## Add SASS Loaders to webpack
+
+Add the following code to your `webpack.config.js`
+
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.module\.s(a|c)ss$/,
+        loader: [
+          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: "[name]__[local]___[hash:base64:5]",
+              camelCase: true,
+              sourceMap: isDevelopment
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: isDevelopment
+            }
+          }
+        ]
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        loader: [
+          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: isDevelopment
+            }
+          }
+        ]
+      }
+    ]
+  }
+};
+```
+
+## Add SASS Resolver to webpack
+
+Add the following code to `webpack.config.js`
+
+```javascript
+resolve: {
+  extensions: [".js", ".ts", ".tsx", ".scss"];
+}
+```
+
+## Create a SASS file
+
+`mkdir -p src/assets/scss/`
+
+`cd src/assets/scss`
+
+`touch site.scss`
+
+Add the following code to `site.scss`
+
+```scss
+body {
+  background-color: rgb(95, 140, 237);
+  h1 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 200;
+  }
+}
+```
+
+## Import SASS into your project
+
+Add the following import to `index.tsx`
+
+`import "./assets/scss/site.scss";`

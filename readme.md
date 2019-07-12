@@ -336,3 +336,68 @@ body {
 Add the following import to `index.tsx`
 
 `import "./assets/scss/site.scss";`
+
+## Install Express Dependencies
+
+`npm install express`
+
+`npm --save-dev install @types/express`
+
+[express](https://www.npmjs.com/package/express)
+
+[@types/express](https://www.npmjs.com/package/@types/express)
+
+## Create basic Express server file
+
+`mkdir server`
+
+`touch server/app.ts`
+
+Add the following code to `app.ts`
+
+```typescript
+import express = require("express");
+
+// Create a new express application instance
+import express = require("express");
+
+const app: express.Application = express();
+
+app.get("/", function(req, res) {
+  res.send("Hello World!");
+});
+
+app.listen(3000, function() {
+  console.log("Example app listening on port 3000!");
+});
+```
+
+## Compiling app.ts
+
+Before we can run our app.ts file we must first compile it down to javascript.
+
+Add the following code to `package.json`
+
+```json
+  "scripts": {
+    "tsc": "tsc"
+  }
+```
+
+Now run the following command
+
+`npm run tsc`
+
+## Install ts-node
+
+`npm --save-dev install ts-node`
+
+## Configure ts-node
+
+Add the following code to `package.json`
+
+```json
+"scripts": {
+  "dev": "ts-node --respawn --transpileOnly ./server/app.ts"
+}
+```

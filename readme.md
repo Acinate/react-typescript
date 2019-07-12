@@ -21,8 +21,6 @@ Create project root and directories
 
 `cd react-typescript`
 
-`mkdir -p src/components`
-
 Initialize the project as a npm package
 
 `npm init -y`
@@ -56,7 +54,7 @@ Add the following code to `tsconfig.json`
   "compilerOptions": {
     "baseUrl": "./",
     "module": "commonjs",
-    "target": "es6",
+    "target": "es5",
     "lib": ["es2015", "es2017", "dom"],
     "jsx": "react",
     "outDir": "dist",
@@ -67,6 +65,7 @@ Add the following code to `tsconfig.json`
     "allowSyntheticDefaultImports": false,
     "noImplicitAny": false,
     "removeComments": true,
+    "strictNullChecks": true,
     "sourceMap": true
   }
 }
@@ -76,24 +75,36 @@ Add the following code to `tsconfig.json`
 
 Create a react component using Typescript
 
-`touch src/components/Hello.tsx`
+`mkdir -p src/components`
 
-Add the following code to `Hello.tsx`
+`touch src/components/App.tsx`
+
+Add the following code to `App.tsx`
 
 ```typescript
 import * as React from "react";
 
-export interface HelloProps {
+export interface IAppProps {
   compiler: string;
   framework: string;
 }
 
-export class Hello extends React.Component<HelloProps, {}> {
-  render() {
+export interface IAppState {}
+
+export default class App extends React.Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
+    super(props);
+
+    this.state = {};
+  }
+
+  public render() {
     return (
-      <h1>
-        Hello from {this.props.compiler} and {this.props.framework}!
-      </h1>
+      <main>
+        <h1>
+          Hello from {this.props.compiler} and {this.props.framework}
+        </h1>
+      </main>
     );
   }
 }
@@ -109,10 +120,10 @@ Add the following code to `index.tsx`
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./components/Hello";
+import App from "./components/App";
 
 ReactDOM.render(
-  <Hello compiler="TypeScript" framework="React" />,
+  <App compiler="TypeScript" framework="React" />,
   document.getElementById("root")
 );
 ```
@@ -158,9 +169,6 @@ const path = require("path");
 module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  },
   output: {
     path: path.join(__dirname, "dist"),
     publicPath: "/dist/",
@@ -185,6 +193,9 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: [".js", ".ts", ".tsx"]
+  },
   externals: {
     react: "React",
     "react-dom": "ReactDOM"
@@ -194,7 +205,7 @@ module.exports = {
 
 ## Setup Webpack Development Server
 
-Install webpack-dev-server
+This tool allows us to use Hot Module Replacement, which will automatically reload the project upon saving new changes.
 
 `npm install --save-dev webpack-dev-server`
 
@@ -202,7 +213,7 @@ Configure `package.json` to have the following scripts
 
 ```json
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "react": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production"
   },
 ```
@@ -211,7 +222,7 @@ Configure `package.json` to have the following scripts
 
 To start the app in your browser type
 
-`npm start`
+`npm run react`
 
 To build the app into your dist folder type
 
@@ -310,6 +321,10 @@ resolve: {
 }
 ```
 
+Also add the following import to the top of `webpack.config.js`
+
+`const isDevelopment = true;`
+
 ## Create a SASS file
 
 `mkdir -p src/assets/scss/`
@@ -358,9 +373,6 @@ Add the following code to `app.ts`
 ```typescript
 import express = require("express");
 
-// Create a new express application instance
-import express = require("express");
-
 const app: express.Application = express();
 
 app.get("/", function(req, res) {
@@ -371,6 +383,30 @@ app.listen(3000, function() {
   console.log("Example app listening on port 3000!");
 });
 ```
+
+## Install ts-node
+
+`npm --save-dev install ts-node`
+
+## Configure ts-node
+
+Edit scrips in `package.json` to look like the following
+
+```json
+"scripts": {
+    "react": "webpack-dev-server --mode development --open --hot",
+    "server": "ts-node ./server/app.ts",
+    "start": "npm run react & npm run server",
+    "build": "webpack --mode production",
+    "tsc": "tsc"
+}
+```
+
+## Start the app
+
+To start both the react app and express server just type
+
+`npm start`
 
 ## Compiling app.ts
 
@@ -387,17 +423,3 @@ Add the following code to `package.json`
 Now run the following command
 
 `npm run tsc`
-
-## Install ts-node
-
-`npm --save-dev install ts-node`
-
-## Configure ts-node
-
-Add the following code to `package.json`
-
-```json
-"scripts": {
-  "dev": "ts-node --respawn --transpileOnly ./server/app.ts"
-}
-```

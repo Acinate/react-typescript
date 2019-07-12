@@ -1,16 +1,17 @@
 import * as React from "react";
 
-export interface HelloProps {
-  compiler: string;
-  framework: string;
-}
+export interface IAppProps {}
 
-export class Hello extends React.Component<HelloProps, {}> {
-  render() {
-    return (
-      <h1 className="container">
-        Hello from {this.props.compiler} and {this.props.framework}!
-      </h1>
-    );
+export interface IAppState {}
+
+export default class App extends React.Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
+    super(props);
+
+    this.state = {};
+  }
+
+  public render() {
+    return <div />;
   }
 }

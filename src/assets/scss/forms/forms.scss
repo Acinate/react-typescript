@@ -1,0 +1,22 @@
+@import "./register-form.scss";
+
+form {
+  .input-group:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+  .input-error {
+    p {
+      margin: 0;
+      padding: 0;
+      color: $colorFailure;
+    }
+  }
+  .form-error {
+    p {
+      margin: 0;
+      padding: 4px 0px;
+      color: $colorFailure;
+      text-align: center;
+    }
+  }
+}

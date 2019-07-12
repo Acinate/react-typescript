@@ -1,8 +1,38 @@
+/* Import Fonts */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap");
+
+/* Color Pallete */
+$color1: #50808e;
+$color2: #69a297;
+$color3: #84b59f;
+$color4: #a3c9a8;
+$color5: #ddd8c4;
+
+/* Other colors */
+$colorFailure: rgb(230, 30, 30);
+$colorWarning: rgb(230, 140, 30);
+$colorSuccess: rgb(40, 230, 30);
+
+/* Import Text Styles */
+@import "./text/headings.scss";
+@import "./text/paragraphs.scss";
+
+/* Import Form Styles */
+@import "./forms/forms.scss";
+
+/* Import Buttons */
+@import "./buttons/buttons.scss";
+
+/* Import Input Styles */
+@import "./inputs/text-input.scss";
+
+/* Import Page Styles */
+@import "./pages/home-page.scss";
+
 body {
-  background-color: rgb(95, 140, 237);
-  h1 {
-    color: #fff;
-    font-size: 30px;
-    font-weight: 200;
-  }
+  margin: 0rem;
+  padding: 0rem;
+  background-color: $color5;
+
+  font-family: "Open Sans", sans-serif;
 }

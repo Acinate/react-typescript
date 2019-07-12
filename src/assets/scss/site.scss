@@ -32,7 +32,13 @@ $colorSuccess: rgb(40, 230, 30);
 body {
   margin: 0rem;
   padding: 0rem;
+
+  min-height: 100vh;
+
   background-color: $color5;
+  background-size: 100%;
+  background-image: linear-gradient($color3, $color2);
+  background-repeat: no-repeat;
 
   font-family: "Open Sans", sans-serif;
 }

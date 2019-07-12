@@ -1,4 +1,5 @@
 import * as React from "react";
+import WelcomeHeading from "./../../headings/welcome-heading/welcome-heading";
 
 export interface IRegisterFormProps {}
 
@@ -172,7 +173,10 @@ export default class RegisterForm extends React.Component<
   public render() {
     return (
       <form className="register-form">
-        <p>Enter the following information to register</p>
+        <WelcomeHeading />
+        <p className="text-center">
+          Enter the following information to register
+        </p>
         <div className="input-group">
           <input
             id="register_email"

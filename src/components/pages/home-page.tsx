@@ -8,7 +8,6 @@ export default class HomePage extends React.Component<IHomePageProps> {
   public render() {
     return (
       <main className="home-page">
-        <WelcomeHeading />
         <RegisterForm />
       </main>
     );

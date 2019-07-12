@@ -8,9 +8,10 @@ In this guide you will learn how to configure your very own react environment. W
 
 - ~~TypeScript~~
 - ~~Sass~~
-- Jest
-- Express
+- ~~Express~~
+- MongoDB
 - Environments
+- Docker
 
 ## Create the Project
 
@@ -335,39 +336,3 @@ body {
 Add the following import to `index.tsx`
 
 `import "./assets/scss/site.scss";`
-
-## Install Jest Dependencies
-
-`npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer`
-
-[jest](https://www.npmjs.com/package/jest)
-
-[babel-jest](https://www.npmjs.com/package/babel-jest)
-
-[@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env)
-
-[@babel/preset-react](https://www.npmjs.com/package/@babel/preset-react)
-
-[react-test-renderer](https://www.npmjs.com/package/react-test-renderer)
-
-Add the following line of code to `package.json`
-
-```json
-  "scripts": {
-    "test": "jest"
-  }
-```
-
-## Create Babel configuration
-
-Create a file `babel.config.js` in your root directory
-
-`touch babel.config.js`
-
-Add the following code to `babel.config.js`
-
-```javascript
-module.exports = {
-  presets: ["@babel/preset-env", "@babel/preset-react"]
-};
-```

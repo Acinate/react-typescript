@@ -1,5 +1,4 @@
 import * as React from "react";
-import WelcomeHeading from "./../../headings/welcome-heading/welcome-heading";
 
 export interface IRegisterFormProps {}
 
@@ -40,27 +39,12 @@ export default class RegisterForm extends React.Component<
   }
 
   submitForm(): void {
-    this.setState({ formSubmitted: true });
+    const formValid = this.checkFormValid();
 
-    // Check if email is valid
-    const emailValid = this.checkEmailValid(this.state.email);
-
-    // Check if name is valid
-    const nameValid = this.checkNameValid(this.state.name);
-
-    // Check if password is valid
-    const passwordValid = this.checkPasswordValid(this.state.password);
-
-    // Check if confirmPassword is valid
-    const confirmPasswordValid = this.checkConfirmPasswordValid(
-      this.state.confirmPassword
-    );
-
-    if (emailValid && nameValid && passwordValid && confirmPasswordValid) {
-      this.setState({
-        formValid: true
-      });
-    }
+    this.setState({
+      formSubmitted: true,
+      formValid: formValid
+    });
   }
 
   handleInputChange(event: any): void {
@@ -73,7 +57,6 @@ export default class RegisterForm extends React.Component<
         this.setState({
           email: value
         });
-        this.checkEmailValid(this.state.email);
         break;
       case "name":
         this.setState({
@@ -91,6 +74,22 @@ export default class RegisterForm extends React.Component<
         });
         break;
     }
+  }
+
+  checkFormValid(): boolean {
+    // Check if email is valid
+    const emailValid = this.checkEmailValid(this.state.email);
+
+    // Check if name is valid
+    const nameValid = this.checkNameValid(this.state.name);
+
+    // Check if password is valid
+    const passwordValid = this.checkPasswordValid(this.state.password);
+
+    // Check if confirmPassword is valid
+    const confirmValid = this.checkConfirmValid(this.state.confirmPassword);
+
+    return emailValid && nameValid && passwordValid && confirmValid;
   }
 
   checkEmailValid(email: string): boolean {
@@ -151,15 +150,15 @@ export default class RegisterForm extends React.Component<
     return message === "";
   }
 
-  checkConfirmPasswordValid(password: string): boolean {
+  checkConfirmValid(confirm: string): boolean {
     let message = "";
 
     // Check if confirm password is empty string
-    if (password === "") {
+    if (confirm === "") {
       message = "Password is required.";
     }
     // Check if confirm password doesn't match password
-    else if (password !== this.state.password) {
+    else if (confirm !== this.state.password) {
       message = "Passwords must match";
     }
 
@@ -173,7 +172,7 @@ export default class RegisterForm extends React.Component<
   public render() {
     return (
       <form className="register-form">
-        <WelcomeHeading />
+        <h1>Create a new Account</h1>
         <p className="text-center">
           Enter the following information to register
         </p>

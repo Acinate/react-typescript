@@ -13,22 +13,6 @@ $colorFailure: rgb(230, 30, 30);
 $colorWarning: rgb(230, 140, 30);
 $colorSuccess: rgb(40, 230, 30);
 
-/* Import Text Styles */
-@import "./text/headings.scss";
-@import "./text/paragraphs.scss";
-
-/* Import Form Styles */
-@import "./forms/forms.scss";
-
-/* Import Buttons */
-@import "./buttons/buttons.scss";
-
-/* Import Input Styles */
-@import "./inputs/text-input.scss";
-
-/* Import Page Styles */
-@import "./pages/home-page.scss";
-
 body {
   margin: 0rem;
   padding: 0rem;

@@ -1,10 +1,9 @@
-import * as React from "React";
+import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import routes from "./../routes";
-import Login from "./../views/Auth/Login";
 
-export interface IAuth {}
+export interface IAuth { }
 
 export default class Auth extends React.Component {
   getRoutes = routes => {

@@ -1,16 +1,64 @@
 const path = require("path");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const isDevelopment = true;
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.tsx",
-  output: {
-    path: path.join(__dirname, "dist"),
-    publicPath: "/dist/",
-    filename: "bundle.js"
+  entry: {
+    app: "./src/frontend/index.tsx"
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    },
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          ecma: 6
+        }
+      }),
+      new OptimizeCss({
+        cssProcessorOptions: {
+          discardComments: true
+        }
+      })
+    ]
+  },
+  devServer: {
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, "dist"),
+    open: "Chrome"
+  },
+  watch: true,
   devtool: "source-map",
+  output: {
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist/js")
+  },
+  plugins: [
+    new CleanWebpackPlugin(["dist"]),
+    new MiniCssExtractPlugin({
+      filename: "../css/style.css",
+      chunkFilename: "[name].css"
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./index.html"
+    })
+  ],
   module: {
     rules: [
       {
@@ -23,61 +71,23 @@ module.exports = {
         ]
       },
       {
-        enforce: "pre",
         test: /\.js$/,
-        loader: "source-map-loader"
+        exclude: /node_modules/,
+        use: ["babel-loader"]
       },
       {
-        test: /\.module\.s(a|c)ss$/,
-        loader: [
-          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              localIdentName: "[name]__[local]___[hash:base64:5]",
-              camelCase: true,
-              sourceMap: isDevelopment
-            }
+            loader: "css-loader"
           },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
-      },
-      {
-        test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
-          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDevelopment
-            }
-          }
+          "sass-loader"
         ]
       }
     ]
   },
-  devServer: {
-    historyApiFallback: true
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
-    })
-  ],
   resolve: {
     extensions: [".js", ".ts", ".tsx", ".scss"]
-  },
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM"
   }
 };

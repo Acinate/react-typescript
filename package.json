@@ -1,17 +1,19 @@
 {
   "name": "react-typescript",
   "version": "1.0.0",
-  "description": "React App from scratch using Webpack and Typescript",
-  "main": "index.js",
+  "description": "React-Typescript Implementation and Structure by Acinate",
+  "main": "index.tsx",
+  "author": "Acinate",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acinate/react-typescript/issues"
+  },
   "scripts": {
-    "react": "webpack-dev-server --mode development --open --hot",
     "start": "npm run react",
+    "react": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
     "tsc": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "react": "^16.8.6",

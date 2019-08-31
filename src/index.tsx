@@ -11,7 +11,6 @@ ReactDOM.render(
     <Switch>
       <Route path="/site" component={SiteLayout} />
       <Route path="/auth" component={AuthLayout} />
-      <Redirect from="*" to="/site" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

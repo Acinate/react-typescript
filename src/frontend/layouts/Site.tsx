@@ -1,18 +1,24 @@
 import * as React from "react";
 
 import Footer from "./../components/Footer/Footer";
-import Header from "./../components/Header/Header";
 import Navbar from "./../components/Navbar/Navbar";
+import Home from "../views/Site/Home";
 
-export interface IBlogLayout {}
+export interface ISiteLayout { }
 
 export default class Site extends React.Component {
   render() {
     return (
       <>
-        <Navbar />
-        <Header />
-        <Footer />
+        <div className="app-navbar">
+          <Navbar />
+        </div>
+        <div className="app-content">
+          <Home />
+        </div>
+        <div className="app-footer">
+          <Footer />
+        </div>
       </>
     );
   }

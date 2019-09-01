@@ -11,6 +11,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/site" component={SiteLayout} />
       <Route path="/auth" component={AuthLayout} />
+      <Route path="*" component={SiteLayout} />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

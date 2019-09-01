@@ -1,28 +1,4 @@
-/* Import Fonts */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap");
-
-/* Color Pallete */
-$color1: #50808e;
-$color2: #69a297;
-$color3: #84b59f;
-$color4: #a3c9a8;
-$color5: #ddd8c4;
-
-/* Other colors */
-$colorFailure: rgb(230, 30, 30);
-$colorWarning: rgb(230, 140, 30);
-$colorSuccess: rgb(40, 230, 30);
-
-body {
-  margin: 0rem;
-  padding: 0rem;
-
-  min-height: 100vh;
-
-  background-color: $color5;
-  background-size: 100%;
-  background-image: linear-gradient($color3, $color2);
-  background-repeat: no-repeat;
-
-  font-family: "Open Sans", sans-serif;
-}
+/* Import Bootstrap */
+@import "node_modules/bootstrap/scss/bootstrap";
+/* Import Custom Styles */
+@import "./core/_core";

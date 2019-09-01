@@ -60,15 +60,12 @@ module.exports = {
     })
   ],
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "ts-loader"
-          }
-        ]
+        use: [{
+          loader: "ts-loader"
+        }]
       },
       {
         test: /\.js$/,
@@ -77,6 +74,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -84,6 +82,10 @@ module.exports = {
           },
           "sass-loader"
         ]
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Container } from "react-bootstrap"
 
-import Header from "./../../components/Header/Header";
+import Logo from "./../../components/Logo/Logo";
 
 export interface IHome { }
 
@@ -21,8 +21,8 @@ export default class Home extends React.Component {
             <>
                 <Container style={home}>
                     <h1 className="text-center">React-Typescript</h1>
-                    <Header />
-                    <h2 className="text-center">Time to code!</h2>
+                    <Logo />
+                    <h1 className="text-center">Starter Project</h1>
                 </Container>
             </>
         );

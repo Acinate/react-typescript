@@ -1,18 +1,21 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import './assets/scss/site.scss';
+import React from "react";
+import ReactDOM from 'react-dom';
 
-import SiteLayout from './layouts/Site';
-import AuthLayout from './layouts/Auth';
+import { AppContainer } from "react-hot-loader";
 
-ReactDOM.render(
-	<BrowserRouter>
-		<Switch>
-			<Route path="/site" component={SiteLayout} />
-			<Route path="/auth" component={AuthLayout} />
-			<Route path="*" component={SiteLayout} />
-		</Switch>
-	</BrowserRouter>,
-	document.getElementById('root')
-);
+import App from "./components/App";
+
+const render = () => {
+	ReactDOM.render(
+		<AppContainer>
+			<App />
+		</AppContainer>,
+		document.getElementById('root')
+	)
+}
+
+render();
+
+if (module.hot) {
+	module.hot.accept('./components/App', render);
+}

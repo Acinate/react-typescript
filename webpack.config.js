@@ -1,61 +1,36 @@
 const path = require("path");
+const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
+  mode: "development",
   entry: {
-    app: "./src/frontend/index.tsx"
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true
-        }
-      }
-    },
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        terserOptions: {
-          ecma: 6
-        }
-      }),
-      new OptimizeCss({
-        cssProcessorOptions: {
-          discardComments: true
-        }
-      })
+    app: [
+      "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
+      "./src/frontend/index.tsx"
     ]
   },
-  devServer: {
-    hot: true,
-    compress: true,
-    historyApiFallback: true,
-    contentBase: path.join(__dirname, "dist"),
-    open: "Chrome"
-  },
   watch: true,
-  devtool: "source-map",
+  devtool: "eval-source-map",
   output: {
+    path: path.resolve(__dirname, "dist"),
     filename: "js/[name].bundle.js",
-    path: path.resolve(__dirname, "dist")
+    publicPath: "/",
+    hotUpdateChunkFilename: ".hot/[id].[hash].hot-update.js",
+    hotUpdateMainFilename: ".hot/[hash].hot-update.json"
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(["dist"]),
     new MiniCssExtractPlugin({
       filename: "css/style.css",
       chunkFilename: "[name].css"
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: "./index.html"
     })
@@ -65,14 +40,16 @@ module.exports = {
     rules: [{
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        use: [{
+        use: {
           loader: "ts-loader"
-        }]
+        }
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: {
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.scss$/,
@@ -87,10 +64,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
+        exclude: /node_modules/,
         use: {
           loader: "file-loader",
           options: {

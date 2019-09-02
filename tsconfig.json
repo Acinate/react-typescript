@@ -2,25 +2,15 @@
   "compilerOptions": {
     "baseUrl": "./",
     "module": "commonjs",
-    "target": "es5",
-    "lib": [
-      "es2015",
-      "es2017",
-      "dom"
-    ],
-    "jsx": "react",
-    "outDir": "dist",
-    "paths": {
-      "components/*": [
-        "src/components/*"
-      ]
-    },
-    "allowJs": true,
-    "allowSyntheticDefaultImports": false,
-    "esModuleInterop": true,
     "noImplicitAny": false,
     "removeComments": true,
     "strictNullChecks": true,
-    "sourceMap": true
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "target": "es2015",
+    "outDir": "dist",
+    "jsx": "react"
   }
 }

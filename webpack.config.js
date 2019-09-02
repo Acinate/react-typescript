@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCss = require('optimize-css-assets-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -45,19 +46,20 @@ module.exports = {
   watch: true,
   devtool: "source-map",
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist/js")
+    filename: "js/[name].bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new MiniCssExtractPlugin({
-      filename: "../css/style.css",
+      filename: "css/style.css",
       chunkFilename: "[name].css"
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: "./index.html"
     })
+    // new BundleAnalyzerPlugin()
   ],
   module: {
     rules: [{
@@ -89,13 +91,12 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
-        use: [{
-          loader: "url-loader",
+        use: {
+          loader: "file-loader",
           options: {
-            limit: 500000,
-            name: "images/[hash]-[name].[ext]"
+            name: "img/[name].[hash].[ext]"
           }
-        }]
+        }
       }
     ]
   },

@@ -7,7 +7,9 @@ const logoContainer: React.CSSProperties = {
 }
 
 const logo: React.CSSProperties = {
-  maxWidth: "100%"
+  maxWidth: "100%",
+  userSelect: "none",
+  pointerEvents: "none"
 }
 
 export default class Logo extends React.Component {

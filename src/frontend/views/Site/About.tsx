@@ -3,21 +3,26 @@ import * as React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 
 const image = require('./../../assets/img/about.jpg');
+const checkbox = require('./../../assets/img/checkbox.png');
 
 const headerImage: React.CSSProperties = {
-	width: '100%'
+	width: '100%',
+	marginBottom: "1rem"
 };
+
+const checkboxImage: React.CSSProperties = {
+	width: "50px"
+}
 
 const grid: React.CSSProperties = {
 	padding: '1rem 0rem'
 };
 
 const list: React.CSSProperties = {
-	width: '200px',
 	margin: '0 auto',
+	width: "300px",
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',
@@ -25,40 +30,58 @@ const list: React.CSSProperties = {
 	height: '100%'
 };
 
+const listItem: React.CSSProperties = {
+	display: "flex",
+	alignItems: "center"
+}
+
+const listItemText: React.CSSProperties = {
+	margin: "0",
+	fontSize: "24px"
+}
+
 export default class About extends React.Component {
 	render() {
 		return (
 			<Container>
 				<img style={headerImage} src={image} alt="" />
+				<h1 className="text-center">React-Typescript</h1>
+				<hr />
 				<Row style={grid}>
 					<Col md="6" className="text-center">
-						<h1>React-Typescript</h1>
 						<p>
 							React-Typescript is jam packed with all the tools you need. It uses Webpack to bundle all
-							your files together and Babel to transpile your js so that even the oldest of browsers can
-							read it. With added developer tools like Typescript, SCSS and Bootstrap your development
-							speed will be 10x so you can tackle those deadlines with ease.
+							your files together and Babel to transpile your javascript so that even the oldest of browsers can
+							run.
+						</p>
+						<p>React-Typescript uses the SCSS framework to handle global CSS styles and library imports like Bootstrap.</p>
+						<p>
+							React-Typescript supports new React 16.6+ features like <a href="https://reactjs.org/docs/hooks-intro.html">
+								React Hooks</a> out of the box. It also supports Live Reloading so you can view your changes as you save your changes.
+						</p>
+						<p>React-Typescript makes deploying your code to production super simple. All you need to do is move your /dist/ folder to your
+							live server and run the project!
 						</p>
 					</Col>
 					<Col md="6">
 						<ul style={list}>
-							<li>
-								<Form.Check type="checkbox" checked label="SCSS" />
+							<li style={listItem}>
+								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Bootstrap</p>
 							</li>
-							<li>
-								<Form.Check type="checkbox" checked label="Bootstrap" />
+							<li style={listItem}>
+								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Typescript</p>
 							</li>
-							<li>
-								<Form.Check type="checkbox" checked label="Typescript" />
+							<li style={listItem}>
+								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>React Router</p>
 							</li>
-							<li>
-								<Form.Check type="checkbox" checked label="React Router" />
+							<li style={listItem}>
+								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>React Router</p>
 							</li>
-							<li>
-								<Form.Check type="checkbox" checked label="NodeJS & Express" />
+							<li style={listItem}>
+								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Node + ExpressJS</p>
 							</li>
-							<li>
-								<Form.Check type="checkbox" checked label="Webpack & Babel" />
+							<li style={listItem}>
+								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Live Reloading</p>
 							</li>
 						</ul>
 					</Col>

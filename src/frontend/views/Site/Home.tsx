@@ -7,8 +7,8 @@ import Logo from './../../components/Logo/Logo';
 export interface IHome { }
 
 const home: React.CSSProperties = {
+	padding: "2rem 1rem",
 	alignSelf: 'center',
-	height: 'calc(100vh - 112px)',
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',

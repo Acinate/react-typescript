@@ -9,10 +9,10 @@ const heading: React.CSSProperties = {
 };
 
 const contact: React.CSSProperties = {
+	padding: "2rem 1rem",
 	alignSelf: 'center',
 	width: '100%',
 	maxWidth: '500px',
-	height: 'calc(100vh - 112px)',
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',

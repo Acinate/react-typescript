@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -80,6 +81,9 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx", ".scss"]
+    extensions: [".js", ".ts", ".tsx", ".scss"],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    }
   }
 };

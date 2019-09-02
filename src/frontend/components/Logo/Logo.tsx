@@ -1,9 +1,5 @@
 import * as React from "react";
 
-import { Container } from "react-bootstrap";
-
-export interface IHeader { }
-
 const reactIcon = require("./../../assets/img/react-icon.png");
 
 const logoContainer: React.CSSProperties = {
@@ -14,7 +10,7 @@ const logo: React.CSSProperties = {
   maxWidth: "100%"
 }
 
-export default class Header extends React.Component {
+export default class Logo extends React.Component {
   render() {
     return (
       <>

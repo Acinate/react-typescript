@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Container } from "react-bootstrap"
+import Container from "react-bootstrap/Container"
 
 import Logo from "./../../components/Logo/Logo";
 

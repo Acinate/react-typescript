@@ -1,6 +1,9 @@
 import * as React from 'react';
 
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 
 const image = require('./../../assets/img/about.jpg');
 

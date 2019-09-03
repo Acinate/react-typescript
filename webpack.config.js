@@ -1,41 +1,22 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCss = require('optimize-css-assets-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-  mode: "development",
-  entry: {
-    app: [
-      "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
-      "./src/frontend/index.tsx"
-    ]
-  },
   watch: true,
-  devtool: "eval-source-map",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "js/[name].bundle.js",
-    publicPath: "/",
-    hotUpdateChunkFilename: ".hot/[id].[hash].hot-update.js",
-    hotUpdateMainFilename: ".hot/[hash].hot-update.json"
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(["dist"]), // removes dist folder after each build
     new MiniCssExtractPlugin({
       filename: "css/style.css",
       chunkFilename: "[name].css"
     }),
     new HtmlWebpackPlugin({
       template: "./index.html"
-    })
-    // new BundleAnalyzerPlugin()
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     rules: [{
@@ -79,11 +60,5 @@ module.exports = {
         }
       }
     ]
-  },
-  resolve: {
-    extensions: [".js", ".ts", ".tsx", ".scss"],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    }
   }
 };

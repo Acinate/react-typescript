@@ -1,16 +1,9 @@
 import Home from "./views/Site/Home";
-import Contact from "./views/Site/Contact";
 import About from "./views/Site/About";
 import Login from "./views/Auth/Login";
 import Register from "./views/Auth/Register";
 
 const routes = [
-  {
-    path: "/contact",
-    name: "Contact",
-    component: Contact,
-    layout: ""
-  },
   {
     path: "/about",
     name: "About",

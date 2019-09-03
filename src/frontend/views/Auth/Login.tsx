@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-export interface ILogin {}
+export interface ILogin { }
 
 export default class Login extends React.Component {
   render() {

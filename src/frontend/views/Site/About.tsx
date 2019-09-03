@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -40,6 +40,8 @@ const listItemText: React.CSSProperties = {
 	fontSize: "24px"
 }
 
+const features = ["Bootstrap", "Typescript", "React Router", "Node + ExpressJS", "Live Reloading"];
+
 export default class About extends React.Component {
 	render() {
 		return (
@@ -65,24 +67,11 @@ export default class About extends React.Component {
 					</Col>
 					<Col md="6">
 						<ul style={list}>
-							<li style={listItem}>
-								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Bootstrap</p>
-							</li>
-							<li style={listItem}>
-								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Typescript</p>
-							</li>
-							<li style={listItem}>
-								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>React Router</p>
-							</li>
-							<li style={listItem}>
-								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>React Router</p>
-							</li>
-							<li style={listItem}>
-								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Node + ExpressJS</p>
-							</li>
-							<li style={listItem}>
-								<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>Live Reloading</p>
-							</li>
+							{features.map((f, i) => {
+								return (<li style={listItem} key={i}>
+									<img src={checkbox} style={checkboxImage} alt="check" /> <p style={listItemText}>{f}</p>
+								</li>)
+							})}
 						</ul>
 					</Col>
 				</Row>

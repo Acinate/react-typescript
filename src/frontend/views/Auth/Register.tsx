@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-export interface IRegister {}
+export interface IRegister { }
 
 export default class Register extends React.Component {
   render() {

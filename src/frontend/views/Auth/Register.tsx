@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export interface IRegister { }
+export interface IRegister {}
 
 export default class Register extends React.Component {
   render() {
@@ -8,18 +8,24 @@ export default class Register extends React.Component {
       <div>
         <form>
           <div className="input-group">
-            <label>Email Address</label>
-            <input type="text" />
+            <label htmlFor="email">
+              Email Address
+              <input id="email" name="email" type="text" />
+            </label>
           </div>
           <div className="input-group">
-            <label>Password</label>
-            <input type="text" />
+            <label htmlFor="password">
+              Password
+              <input id="password" name="password" type="text" />
+            </label>
           </div>
           <div className="input-group">
-            <label>Confirm Password</label>
-            <input type="text" />
+            <label htmlFor="confirm">
+              Confirm Password
+              <input id="confirm" name="confirm" type="text" />
+            </label>
           </div>
-          <button>Register</button>
+          <button type="button">Register</button>
         </form>
       </div>
     );

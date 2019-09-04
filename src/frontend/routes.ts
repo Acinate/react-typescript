@@ -1,32 +1,32 @@
-import Home from "./views/Site/Home";
-import About from "./views/Site/About";
-import Login from "./views/Auth/Login";
-import Register from "./views/Auth/Register";
+import Home from './views/Site/Home';
+import About from './views/Site/About';
+import Login from './views/Auth/Login';
+import Register from './views/Auth/Register';
 
 const routes = [
   {
-    path: "/about",
-    name: "About",
+    path: '/about',
+    name: 'About',
     component: About,
-    layout: ""
+    layout: ''
   },
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
-    layout: ""
+    layout: ''
   },
   {
-    path: "/login",
-    name: "Login",
+    path: '/login',
+    name: 'Login',
     component: Login,
-    layout: "/auth"
+    layout: '/auth'
   },
   {
-    path: "/register",
-    name: "Register",
+    path: '/register',
+    name: 'Register',
     component: Register,
-    layout: "/auth"
+    layout: '/auth'
   }
 ];
 

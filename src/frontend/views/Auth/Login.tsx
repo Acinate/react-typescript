@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export interface ILogin { }
+export interface ILogin {}
 
 export default class Login extends React.Component {
   render() {
@@ -8,14 +8,18 @@ export default class Login extends React.Component {
       <div>
         <form>
           <div className="input-group">
-            <label>Email Address</label>
-            <input type="text" />
+            <label htmlFor="email">
+              Email Address
+              <input id="email" name="email" type="text" />
+            </label>
           </div>
           <div className="input-group">
-            <label>Password</label>
-            <input type="text" />
+            <label htmlFor="password">
+              Password
+              <input id="password" name="password" type="text" />
+            </label>
           </div>
-          <button>Login</button>
+          <button type="button">Login</button>
         </form>
       </div>
     );

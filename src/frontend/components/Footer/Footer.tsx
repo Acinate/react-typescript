@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-export interface IFooterProps { }
+export interface IFooterProps {}
 
 const text: React.CSSProperties = {
-  margin: "0",
-  color: "#fff",
-  textAlign: "center"
-}
+  margin: '0',
+  color: '#fff',
+  textAlign: 'center'
+};
 
 export default class Footer extends React.Component<IFooterProps> {
   public render() {

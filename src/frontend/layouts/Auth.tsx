@@ -1,30 +1,30 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import routes from "./../routes";
+import routesJson from '../routes';
 
-export interface IAuth { }
+export interface IAuth {}
 
 export default class Auth extends React.Component {
-  getRoutes = routes => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/auth") {
+  getRoutes = (routes) => {
+    return routes.map((prop) => {
+      if (prop.layout === '/auth') {
         return (
           <Route
             path={prop.layout + prop.path}
             component={prop.component}
-            key={key}
+            key={prop.layout + prop.path}
           />
         );
-      } else {
-        return null;
       }
+      return null;
     });
   };
+
   render() {
     return (
       <>
-        <Switch>{this.getRoutes(routes)}</Switch>
+        <Switch>{this.getRoutes(routesJson)}</Switch>
       </>
     );
   }

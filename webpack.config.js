@@ -1,36 +1,37 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const webpack = require("webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   watch: true,
   plugins: [
-    new CleanWebpackPlugin(["dist"]), // removes dist folder after each build
+    new CleanWebpackPlugin(['dist']), // removes dist folder after each build
     new MiniCssExtractPlugin({
-      filename: "css/style.css",
-      chunkFilename: "[name].css"
+      filename: 'css/style.css',
+      chunkFilename: '[name].css'
     }),
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: './index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: {
-          loader: "ts-loader"
+          loader: 'ts-loader'
         }
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {
@@ -39,9 +40,9 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader"
+            loader: 'css-loader'
           },
-          "sass-loader"
+          'sass-loader'
         ]
       },
       {
@@ -53,9 +54,9 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         exclude: /node_modules/,
         use: {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "img/[name].[hash].[ext]"
+            name: 'img/[name].[hash].[ext]'
           }
         }
       }

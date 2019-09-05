@@ -4,13 +4,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../assets/scss/site.scss';
 
 import SiteLayout from '../layouts/Site';
-import AuthLayout from '../layouts/Auth';
 
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/site" component={SiteLayout} />
-      <Route path="/auth" component={AuthLayout} />
       <Route path="*" component={SiteLayout} />
     </Switch>
   </BrowserRouter>

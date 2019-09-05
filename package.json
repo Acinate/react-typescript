@@ -9,12 +9,9 @@
     "url": "https://github.com/acinate/react-typescript/issues"
   },
   "scripts": {
-    "devStart": "webpack --config webpack.dev.js",
-    "devServer": "NODE_ENV=development ts-node ./src/backend/index.ts",
-    "prodStart": "webpack --config webpack.prod.js",
-    "prodServer": "NODE_ENV=production ts-node ./src/backend/index.ts",
-    "dev": "npm-run-all -p -r devStart devServer",
-    "prod": "npm-run-all -p -r prodStart prodServer",
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "prod": "webpack-dev-server --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -54,7 +51,8 @@
     "url-loader": "^2.1.0",
     "webpack": "^4.35.3",
     "webpack-bundle-analyzer": "^3.4.1",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",

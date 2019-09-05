@@ -5,9 +5,14 @@ const config = require('./webpack.config');
 module.exports = merge(config, {
   mode: 'production',
   entry: {
-    app: ['./src/frontend/index.tsx']
+    app: ['./src/index.tsx']
   },
   devtool: 'source-map',
+  devServer: {
+    compress: true,
+    port: 8080,
+    historyApiFallback: true
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].bundle.js',

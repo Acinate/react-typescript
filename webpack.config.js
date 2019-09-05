@@ -1,21 +1,18 @@
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-  watch: true,
   plugins: [
-    new CleanWebpackPlugin(['dist']), // removes dist folder after each build
+    new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/style.css',
       chunkFilename: '[name].css'
     }),
     new HtmlWebpackPlugin({
       template: './index.html'
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ],
   module: {
     rules: [

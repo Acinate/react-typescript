@@ -1,13 +1,25 @@
-@import "./navbar/__navbar";
-@import "./content/__content";
-@import "./footer/__footer";
-@import "./animations/__animations";
+/* Colors */
+$dark-blue-1: #343a40;
+
+/* Components */
+@import './navbar/__navbar';
+@import './content/__content';
+@import './footer/__footer';
+@import './animations/__animations';
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 body {
-    position: relative;
-    height: 100%;
-    min-height: 100vh;
-    margin: 0rem;
-    padding: 0rem;
-    box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  margin: 0rem;
+  padding: 0rem;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body * {
+  box-sizing: border-box;
 }

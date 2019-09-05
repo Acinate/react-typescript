@@ -1,9 +1,8 @@
 import React from 'react';
-
 import { Route, Switch } from 'react-router-dom';
 
 import routesJson from '../routes';
-import BNavbar from '../components/Navbar/Navbar';
+import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 
 export interface ISiteLayout {}
@@ -20,7 +19,6 @@ export default class Site extends React.Component {
           />
         );
       }
-
       return null;
     });
   };
@@ -29,7 +27,7 @@ export default class Site extends React.Component {
     return (
       <div className="site">
         <div className="app-navbar">
-          <BNavbar />
+          <Navbar />
         </div>
         <div className="app-content">
           <Switch>{this.getRoutes(routesJson)}</Switch>

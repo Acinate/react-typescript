@@ -1,28 +1,16 @@
 import React from 'react';
+import './Logo.scss';
 
 const reactIcon = require('./../../assets/img/react-icon.png');
 
-const logoContainer: React.CSSProperties = {
-  textAlign: 'center'
-};
+export interface ILogo {}
 
-const logoStyles: React.CSSProperties = {
-  maxWidth: '100%',
-  userSelect: 'none',
-  pointerEvents: 'none'
-};
-
-const Logo = () => (
-  <>
-    <div style={logoContainer}>
-      <img
-        style={logoStyles}
-        className="spin-clockwise"
-        src={reactIcon}
-        alt="react_logo"
-      />
-    </div>
-  </>
-);
-
-export default Logo;
+export default class Logo extends React.Component {
+  render() {
+    return (
+      <div className="container">
+        <img className="logo spin-clockwise" src={reactIcon} alt="react_logo" />
+      </div>
+    );
+  }
+}

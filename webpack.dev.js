@@ -14,6 +14,9 @@ module.exports = merge(config, {
     hot: true
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.scss']
+    extensions: ['.js', '.ts', '.tsx', '.scss'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
   }
 });

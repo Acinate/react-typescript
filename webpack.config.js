@@ -1,18 +1,14 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 
 module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new MiniCssExtractPlugin({
-      filename: 'css/style.css',
-      chunkFilename: '[name].css'
-    }),
     new HtmlWebpackPlugin({
       template: './index.html'
-    })
+    }),
+    new BundleAnalyzerPlugin.BundleAnalyzerPlugin()
   ],
   module: {
     rules: [
@@ -33,13 +29,7 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader'
-          },
-          'sass-loader'
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.css$/,

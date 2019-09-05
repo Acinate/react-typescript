@@ -5,12 +5,6 @@ import Register from './views/Auth/Register';
 
 const routes = [
   {
-    path: '/about',
-    name: 'About',
-    component: About,
-    layout: ''
-  },
-  {
     path: '/',
     name: 'Home',
     component: Home,

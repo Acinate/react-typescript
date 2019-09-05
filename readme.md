@@ -10,14 +10,18 @@ cd react-typescript
 npm install
 ```
 
-## Run in development mode
+## Run in Development mode (Development)
 
 `npm run dev`
 
 Visit [localhost:8080](localhost:8080) in a browser
 
-## Run / build for production
+## Run in Production mode (Development)
 
 `npm run prod`
+
+## Create Static Bundle for Deployment (Production)
+
+`npm run build`
 
 Production files are located in `~/dist/`

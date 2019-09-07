@@ -1,14 +1,13 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 
 module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: './index.html'
-    }),
-    new BundleAnalyzerPlugin.BundleAnalyzerPlugin()
+    })
   ],
   module: {
     rules: [

@@ -21,8 +21,12 @@
   "rules": {
     "comma-dangle": "off",
     "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
-    "react/prefer-stateless-function": "off",
-    "arrow-body-style": "off"
+    "react/prefer-stateless-function": "warn",
+    "arrow-body-style": "off",
+    "no-unused-vars": "off",
+    "no-shadow": "warn",
+    "no-alert": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   },
   "settings": {
     "import/resolver": {

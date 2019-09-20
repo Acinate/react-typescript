@@ -3,12 +3,9 @@ import './Footer.scss';
 
 export interface IFooterProps {}
 
-export default class Footer extends React.Component<IFooterProps> {
-  public render() {
-    return (
-      <footer>
-        <p>React-Typescript © All Rights Reserved</p>
-      </footer>
-    );
-  }
-}
+const Footer = () => (
+  <footer>
+    <p>React-Typescript © All Rights Reserved</p>
+  </footer>
+);
+export default Footer;

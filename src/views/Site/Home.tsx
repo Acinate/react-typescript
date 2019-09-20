@@ -12,14 +12,12 @@ const homeStyles: React.CSSProperties = {
   alignItems: 'center'
 };
 
-export default class Home extends React.Component {
-  render() {
-    return (
-      <div style={homeStyles}>
-        <h1 className="text-center">React-Typescript</h1>
-        <Logo />
-        <h1 className="text-center">Starter Project</h1>
-      </div>
-    );
-  }
-}
+const Home = () => (
+  <div style={homeStyles}>
+    <h1 className="text-center">React-Typescript</h1>
+    <Logo />
+    <h1 className="text-center">Starter Project</h1>
+  </div>
+);
+
+export default Home;

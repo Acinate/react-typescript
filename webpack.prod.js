@@ -22,6 +22,7 @@ module.exports = merge(config, {
     minimize: true
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.scss']
+    extensions: ['.js', '.ts', '.tsx', '.scss'],
+    modules: [path.resolve('./node_modules'), path.resolve('./src')]
   }
 });

@@ -1,3 +1,4 @@
+const path = require('path');
 const merge = require('webpack-merge');
 const config = require('./webpack.config');
 
@@ -17,6 +18,7 @@ module.exports = merge(config, {
     extensions: ['.js', '.ts', '.tsx', '.scss'],
     alias: {
       'react-dom': '@hot-loader/react-dom'
-    }
+    },
+    modules: [path.resolve('./node_modules'), path.resolve('./src')]
   }
 });

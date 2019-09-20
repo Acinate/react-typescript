@@ -1,7 +1,7 @@
 import React from 'react';
 import './Logo.scss';
 
-const reactIcon = require('./../../assets/img/react-icon.png');
+const reactIcon = require('assets/img/react-icon.png');
 
 export interface ILogo {}
 

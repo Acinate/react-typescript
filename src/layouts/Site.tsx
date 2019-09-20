@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import routesJson from '../routes';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
+import routesJson from 'routes';
+import Navbar from 'components/Navbar/Navbar';
+import Footer from 'components/Footer/Footer';
 
 export interface ISiteLayout {}
 

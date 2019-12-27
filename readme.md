@@ -123,7 +123,7 @@ if ((module as any).hot) {
 ##### ~/src/react/components/app.tsx
 ```typescript jsx
 import {hot} from 'react-hot-loader/root';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 const App = () => {
     return (
@@ -215,5 +215,60 @@ In our project root add a tsconfig file:
     "node_modules",
     "**/*.spec.ts"
   ]
+}
+```
+---
+# Optional Addons
+
+## Step 4: Add SCSS
+
+### Install Dependencies
+```shell script
+$ npm install -D sass-loader node-sass css-loader style-loader
+```
+
+### Add Webpack Loader
+
+##### ~/webpack.config.js
+```javascript
+module.exports = {
+    ...
+    module: {
+        rules: [
+            ...
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
+        ]
+    }
+};
+```
+
+### Create SCSS Files & Directories
+
+```shell script
+mkdir src/assets/ && mkdir src/assets/scss
+```
+
+##### ~/src/assets/scss/app.scss
+```scss
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
 }
 ```

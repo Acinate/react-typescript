@@ -1,5 +1,6 @@
 import {hot} from 'react-hot-loader/root';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import '../../assets/scss/app.scss';
 
 const App = () => {
     return (

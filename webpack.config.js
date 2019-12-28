@@ -41,7 +41,17 @@ module.exports = {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
-            }
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'img/[name].[hash].[ext]'
+                    }
+                }
+            },
         ]
     }
 };

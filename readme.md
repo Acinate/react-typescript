@@ -207,9 +207,6 @@ In our project root add a tsconfig file:
       "./node_modules/@types/"
     ]
   },
-  "include": [
-    "./src/**/*"
-  ],
   "exclude": [
     "dist",
     "node_modules",
@@ -249,7 +246,7 @@ module.exports = {
 ### Create SCSS Files & Directories
 
 ```shell script
-mkdir src/assets/ && mkdir src/assets/scss
+$ mkdir src/assets/ && mkdir src/assets/scss
 ```
 
 ##### ~/src/assets/scss/app.scss
@@ -271,4 +268,39 @@ body * {
 h1 {
   text-align: center;
 }
+```
+
+## Step 5: Add Local Image Support
+
+### Install Dependencies
+```shell script
+$ npm install -D file-loader
+```
+
+### Create Image Directory
+```shell script
+$ mkdir src/assets/img
+```
+
+### Add Placeholder image
+Download an example image into this directory, you can use the following link:
+
+https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png
+
+### Display image in React
+
+##### ~/src/react/components/app.tsx
+```typescript jsx
+import logo from '../../assets/img/react.png';
+
+const App = () => {
+    return (
+        <div className="app_container">
+            <div className="app_inner">
+                <h1>Welcome to React-Typescript!</h1>
+                <img src={logo} alt="react_logo"/>
+            </div>
+        </div>
+    )
+};
 ```

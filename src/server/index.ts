@@ -3,6 +3,7 @@ import path from 'path';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import {ENVIRONMENT, PORT} from '../util/secrets';
 
 const webpackConfig = require('./../../webpack.config.js');
 
@@ -25,6 +26,6 @@ app.get('/', (req: Request, res: Response) => {
     res.sendFile(path.resolve(__dirname, "../../dist/index.html"))
 });
 
-app.listen(3000, () => {
-    console.log("Express started on http://localhost:3000/");
+app.listen(PORT, () => {
+    console.log(`Express started on http://localhost:${PORT}/ in ${ENVIRONMENT} mode.`);
 });

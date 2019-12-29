@@ -7,12 +7,12 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * Typescript
 * Sass components
 * Local image support
+* Environment Variables
 * and more!
 
-### Coming soon
-* Express API
-* React router
-* Environment Vars
+### Coming soon (my excuses for not adding to project)
+* Express API (dunno what to implement as example)
+* React router (substantial bundle size increase)
 * Jest unit testing
 * Docker configuration
 * MongoDB Database
@@ -340,19 +340,67 @@ const App = () => {
 };
 ```
 
-## Step 5: API Calls
+## Step 6: Environmental Variables
 
-## Install Dependencies
+### Install Dependencies
 ```shell script
-$ npm install -D axios @types/axios
+$ npm install -D dotenv @types/dotenv
 ```
 
-## Create Files and Directories
+### Create Files and Directories
 ```shell script
-$ mkdir src/react/api
+$ mkdir src/util
 ```
 
-##### ~/src/react/api/weather.api.ts
+### Create Secrets File
+##### ~/src/util/secrets.ts
 ```typescript
+import dotenv from 'dotenv';
+import fs from 'fs';
 
+if (fs.existsSync(__dirname + '/.env')) {
+    dotenv.config({path: __dirname + '/.env'});
+} else if (fs.existsSync(__dirname +'/.env.example')) {
+    console.warn('Using .example.env file to supply environmental variables.')
+    dotenv.config({path: __dirname + '/.env.example'});
+} else {
+    console.error('No .env file. Create a .env file in the same directory as this file.')
+    process.exit(1);
+}
+
+export const ENVIRONMENT = process.env.NODE_ENV;
+const production = ENVIRONMENT === 'production';
+
+export const PORT = process.env['PORT'];
+if (!PORT) {
+    console.error('Environmental Variable: PORT not found, please check .env files.');
+    process.exit(1);
+}
+```
+
+### Create .env file
+##### ~/src/util/.env
+```dotenv
+PORT=3000
+```
+
+### Update package.json launch scripts
+##### ~/package.json
+```json
+{
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon ./src/server/index.ts",
+    "prod": "NODE_ENV=production nodemon ./src/server/index.ts"
+  }
+}
+```
+
+### Import Environmental Variables
+##### ~/src/server/index.ts
+```typescript
+import {ENVIRONMENT, PORT} from '../util/secrets';
+
+app.listen(PORT, () => {
+    console.log(`Express started on http://localhost:${PORT}/ in ${ENVIRONMENT} mode.`);
+});
 ```

@@ -293,6 +293,30 @@ $ npm install -D file-loader
 $ mkdir src/assets/img
 ```
 
+### Add Webpack File Loader
+
+##### ~/webpack.config.js
+```javascript
+module.exports = {
+    ...
+    module: {
+        rules: [
+            ...
+            {
+                test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'img/[name].[hash].[ext]'
+                    }
+                }
+            }
+        ]
+    }
+};
+```
+
 ### Add Placeholder image
 Download an example image into this directory, you can use the following link:
 

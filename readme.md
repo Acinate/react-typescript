@@ -5,7 +5,18 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * Webpack bundling
 * Hot Reloading
 * Typescript
+* Sass components
+* Local image support
 * and more!
+
+### Coming soon
+* Express API
+* React router
+* Environment Vars
+* Jest unit testing
+* Docker configuration
+* MongoDB Database
+* OAuth Authentication
 
 ## Step 1: Install & Setup Webpack
 
@@ -303,4 +314,21 @@ const App = () => {
         </div>
     )
 };
+```
+
+## Step 5: API Calls
+
+## Install Dependencies
+```shell script
+$ npm install -D axios @types/axios
+```
+
+## Create Files and Directories
+```shell script
+$ mkdir src/react/api
+```
+
+##### ~/src/react/api/weather.api.ts
+```typescript
+
 ```

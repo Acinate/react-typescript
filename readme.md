@@ -8,15 +8,15 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * Sass components
 * Local image support
 * Environment Variables
+* Jest unit testing
 * and more!
 
 ### Coming soon (my excuses for not adding to project)
 * Express API (dunno what to implement as example)
 * React router (substantial bundle size increase)
-* Jest unit testing
 * Docker configuration
 * MongoDB Database
-* OAuth Authentication
+* Passport.js | OAuth Authentication
 
 ## Step 1: Install & Setup Webpack
 
@@ -403,4 +403,90 @@ import {ENVIRONMENT, PORT} from '../util/secrets';
 app.listen(PORT, () => {
     console.log(`Express started on http://localhost:${PORT}/ in ${ENVIRONMENT} mode.`);
 });
+```
+
+## Step 7: Configure Jest
+### Install dependencies
+```shell script
+npm install -D jest @types/jest ts-jest
+```
+
+### Create Jest configuration file
+##### ~/jest.config.js
+```javascript
+module.exports = {
+    'roots': [
+        '<rootDir>/src'
+    ],
+    testMatch: [
+        '**/__tests__/**/*.+(ts|tsx|js)',
+        '**/?(*.)+(spec|test).+(ts|tsx|js)'
+    ],
+    'transform': {
+        '^.+\\.(ts|tsx)$': 'ts-jest'
+    },
+    'moduleNameMapper': {
+        '\\.(css|jpg|png|scss)$': '<rootDir>/src/util/_empty.js'
+    }
+};
+```
+
+### Create empty javascript file
+##### ~/src/util/_empty.js
+```javascript
+// keep this file empty
+```
+
+### Add test for app.tsx
+##### ~/src/react/components/app.spec.tsx
+```typescript jsx
+import React from 'react';
+import {render, unmountComponentAtNode} from "react-dom";
+import {act} from 'react-dom/test-utils';
+
+import App from './app';
+
+let container: HTMLDivElement | null = null;
+beforeEach(() => {
+    // setup DOM element as render target
+    container = document.createElement('div');
+    document.body.appendChild(container);
+});
+
+afterEach(() => {
+    // cleanup on exiting
+    unmountComponentAtNode(container);
+    container.remove();
+    container = null;
+});
+
+it('renders with an h1 with some text', () => {
+    act(() => {
+        render(<App/>, container);
+    });
+    const h1 = container.children[0].children[0].children[0];
+    expect(h1.tagName).toBe("H1");
+    expect(h1.textContent).toBe("Welcome to React-Typescript!");
+});
+
+it('renders an image with some alt text', () => {
+    act(() => {
+        render(<App/>, container);
+    });
+    const img = container.children[0].children[0].children[1];
+    expect(img.tagName).toBe("IMG");
+    expect(img.attributes.getNamedItem("alt").value).toBe("react_logo");
+});
+```
+
+### Add test command to package.json
+##### ~/package.json
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "test": "jest"
+  }
+}
 ```

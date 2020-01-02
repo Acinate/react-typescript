@@ -1,6 +1,7 @@
 module.exports = {
+    'name': 'server',
     'roots': [
-        '<rootDir>/src'
+        '<rootDir>'
     ],
     testMatch: [
         '**/__tests__/**/*.+(ts|tsx|js)',
@@ -9,7 +10,5 @@ module.exports = {
     'transform': {
         '^.+\\.(ts|tsx)$': 'ts-jest'
     },
-    'moduleNameMapper': {
-        '\\.(css|jpg|png|scss)$': '<rootDir>/src/util/_empty.js'
-    }
+    'testEnvironment': 'node'
 };

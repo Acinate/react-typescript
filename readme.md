@@ -8,14 +8,16 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * Sass components
 * Local image support
 * Environment Variables
-* Jest unit testing
+* React Testing with Jest
+* Express Testing with Jest
 * and more!
 
 ### Coming soon (my excuses for not adding to project)
 * Express API (dunno what to implement as example)
 * React router (substantial bundle size increase)
-* Docker configuration
 * MongoDB Database
+* MongoDB Testing with Jest
+* Docker configuration
 * Passport.js | OAuth Authentication
 
 ## Step 1: Install & Setup Webpack
@@ -408,15 +410,16 @@ app.listen(PORT, () => {
 ## Step 7: Configure Jest
 ### Install dependencies
 ```shell script
-npm install -D jest @types/jest ts-jest
+npm install -D jest @types/jest ts-jest supertest @types/supertest
 ```
 
-### Create Jest configuration file
-##### ~/jest.config.js
+### Create React Jest configuration file
+##### ~/src/react/jest.config.js
 ```javascript
 module.exports = {
+    'name': 'react',
     'roots': [
-        '<rootDir>/src'
+        '<rootDir>'
     ],
     testMatch: [
         '**/__tests__/**/*.+(ts|tsx|js)',
@@ -426,7 +429,7 @@ module.exports = {
         '^.+\\.(ts|tsx)$': 'ts-jest'
     },
     'moduleNameMapper': {
-        '\\.(css|jpg|png|scss)$': '<rootDir>/src/util/_empty.js'
+        '\\.(css|jpg|png|scss)$': '<rootDir>/../util/_empty.js'
     }
 };
 ```
@@ -479,6 +482,42 @@ it('renders an image with some alt text', () => {
 });
 ```
 
+### Create Express Jest configuration file
+##### ~/src/server/jest.config.js
+```javascript
+module.exports = {
+    'name': 'server',
+    'roots': [
+        '<rootDir>'
+    ],
+    testMatch: [
+        '**/__tests__/**/*.+(ts|tsx|js)',
+        '**/?(*.)+(spec|test).+(ts|tsx|js)'
+    ],
+    'transform': {
+        '^.+\\.(ts|tsx)$': 'ts-jest'
+    },
+    'testEnvironment': 'node'
+};
+```
+
+### Add test for home.ts
+##### ~/src/server/controllers/home.spec.ts
+```typescript
+import app from '../index';
+import supertest, {Response} from 'supertest';
+
+const request = supertest(app);
+
+it('Gets the home endpoint', async done => {
+    // Sends GET Request to /api/ endpoint
+    const response: Response = await request.get('/api/');
+    expect(response.status).toBe(200);
+    expect(response.body.message).toBe('Welcome to Express-Typescript!');
+    done();
+});
+```
+
 ### Add test command to package.json
 ##### ~/package.json
 ```json
@@ -486,7 +525,7 @@ it('renders an image with some alt text', () => {
   ...
   "scripts": {
     ...
-    "test": "jest"
+    "test": "jest --projects src/react src/server"
   }
 }
 ```

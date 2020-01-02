@@ -2,6 +2,9 @@
   "name": "react-typescript",
   "version": "1.0.0",
   "description": "This project implements React w/ Typescript that is served by a Node.js Express application.",
+  "keywords": [],
+  "author": "Jason Efthimiou",
+  "license": "ISC",
   "main": "./src/server/index.ts",
   "devDependencies": {
     "@hot-loader/react-dom": "^16.11.0",
@@ -10,6 +13,7 @@
     "@types/jest": "^24.0.25",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@types/supertest": "^2.0.8",
     "@types/webpack": "^4.41.0",
     "@types/webpack-dev-middleware": "^2.0.3",
     "@types/webpack-hot-middleware": "^2.25.0",
@@ -21,6 +25,7 @@
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.1.2",
+    "supertest": "^4.0.2",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.5.4",
@@ -39,9 +44,6 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./src/server/index.ts",
     "prod": "NODE_ENV=production nodemon ./src/server/index.ts",
-    "test": "jest"
-  },
-  "keywords": [],
-  "author": "Jason Efthimiou",
-  "license": "ISC"
+    "test": "jest --projects src/react src/server"
+  }
 }

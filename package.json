@@ -44,6 +44,8 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./src/server/index.ts",
     "prod": "NODE_ENV=production nodemon ./src/server/index.ts",
-    "test": "jest --projects src/react src/server"
+    "test": "jest --projects src/react src/server",
+    "build-docker": "docker build -t react-typescript .",
+    "docker": "docker run -p 8080:3000 -d react-typescript"
   }
 }

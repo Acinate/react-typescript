@@ -10,6 +10,7 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * Environment Variables
 * React Testing with Jest
 * Express Testing with Jest
+* Docker configuration
 * and more!
 
 ### Coming soon (my excuses for not adding to project)
@@ -17,8 +18,10 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * React router (substantial bundle size increase)
 * MongoDB Database
 * MongoDB Testing with Jest
-* Docker configuration
 * Passport.js | OAuth Authentication
+
+### Needs Fixing
+* Docker should use PM2 instead of Nodemon for Production Environment
 
 ## Step 1: Install & Setup Webpack
 

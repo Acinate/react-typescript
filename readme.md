@@ -36,7 +36,7 @@ $ npm install -D webpack @types/webpack webpack-dev-middleware @types/webpack-de
 ```
 
 ### Add Webpack Config File
-##### ~/webpack.config.js
+##### ~/webpack.config.js.backup
 ```javascript
 const path = require("path");
 const webpack = require("webpack");
@@ -175,7 +175,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-const webpackConfig = require('./../../webpack.config.js');
+const webpackConfig = require('./../../webpack.config.js.backup');
 
 const compiler = webpack(webpackConfig);
 
@@ -242,7 +242,7 @@ $ npm install -D sass-loader node-sass css-loader style-loader
 
 ### Add Webpack Loader
 
-##### ~/webpack.config.js
+##### ~/webpack.config.js.backup
 ```javascript
 module.exports = {
     ...
@@ -300,7 +300,7 @@ $ mkdir src/assets/img
 
 ### Add Webpack File Loader
 
-##### ~/webpack.config.js
+##### ~/webpack.config.js.backup
 ```javascript
 module.exports = {
     ...

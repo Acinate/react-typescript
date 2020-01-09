@@ -4,30 +4,36 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import {ENVIRONMENT, PORT} from '../util/secrets';
+// Import API Routes
+import * as home from './controllers/home';
 
-const webpackConfig = require('./../../webpack.config.js');
-const compiler = webpack(webpackConfig);
 const app = express();
 
 // Configure Middleware
-app.use(
-    webpackDevMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath,
-        stats: "errors-warnings"
-    })
-);
-app.use(webpackHotMiddleware(compiler));
-app.use(express.static("dist"));
+if (ENVIRONMENT == 'development') {
+    const webpackConfig = require('../../webpack.dev.js');
+    const compiler = webpack(webpackConfig);
 
-// Import API Routes
-import * as home from './controllers/home';
+    app.use(
+        webpackDevMiddleware(compiler, {
+            publicPath: webpackConfig.output.publicPath,
+            stats: "errors-warnings"
+        })
+    );
+    app.use(webpackHotMiddleware(compiler));
+}
+app.use(express.static("dist"));
 
 // Define API Routes
 app.get('/api/', home.get);
 
 // Serve React Static Files
 app.get('/', (req: Request, res: Response) => {
-    res.sendFile(path.resolve(__dirname, "../../dist/index.html"))
+    if (ENVIRONMENT === 'development') {
+        res.sendFile(path.resolve(__dirname, "/dist/index.html"))
+    } else {
+        res.sendFile(path.resolve(__dirname, "/client/index.html"))
+    }
 });
 
 // Start server

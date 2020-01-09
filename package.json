@@ -19,6 +19,7 @@
     "@types/webpack-hot-middleware": "^2.25.0",
     "css-loader": "^3.4.1",
     "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.7.0",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
@@ -31,8 +32,11 @@
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4",
     "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-hot-middleware": "^2.25.0"
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -45,6 +49,9 @@
     "dev": "NODE_ENV=development nodemon ./src/server/index.ts",
     "prod": "NODE_ENV=production nodemon ./src/server/index.ts",
     "test": "jest --projects src/react src/server",
+    "build": "npm run build-client && npm run build-server",
+    "build-client": "webpack --config webpack.prod.client.js",
+    "build-server": "webpack --config webpack.prod.server.js",
     "build-docker": "docker build -t react-typescript .",
     "docker": "docker run -p 8080:3000 -d react-typescript"
   }

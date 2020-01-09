@@ -1,33 +1,4 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
-    mode: 'development',
-    entry: {
-        app: [
-            "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
-            "./src/react/index.tsx"
-        ]
-    },
-    output: {
-        path: path.resolve(__dirname, "./dist"),
-        filename: "[name].bundle.js",
-        publicPath: "/"
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            template: './index.html'
-        })
-    ],
-    resolve: {
-        extensions: ['.js', '.ts', '.tsx', '.scss'],
-        alias: {
-            'react-dom': '@hot-loader/react-dom'
-        },
-        modules: [path.resolve('./node_modules'), path.resolve('./src')]
-    },
     module: {
         rules: [
             {
@@ -43,7 +14,12 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'file-loader',
@@ -51,6 +27,11 @@ module.exports = {
                         name: 'img/[name].[hash].[ext]'
                     }
                 }
+            },
+            {
+                test: /\.(ico)$/,
+                exclude: /node_modules/,
+                loader: 'file-loader?name=[name].[ext]'
             }
         ]
     }

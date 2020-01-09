@@ -7,10 +7,12 @@ import {ENVIRONMENT, PORT} from '../util/secrets';
 // Import API Routes
 import * as home from './controllers/home';
 
+const fs = require('fs');
+
 const app = express();
 
-// Configure Middleware
-if (ENVIRONMENT == 'development') {
+// Configure Webpack Dev Server (with React Hot-Reload)
+if (ENVIRONMENT === 'development') {
     const webpackConfig = require('../../webpack.dev.js');
     const compiler = webpack(webpackConfig);
 
@@ -22,18 +24,16 @@ if (ENVIRONMENT == 'development') {
     );
     app.use(webpackHotMiddleware(compiler));
 }
-app.use(express.static("dist"));
 
 // Define API Routes
 app.get('/api/', home.get);
 
-// Serve React Static Files
+// Configure Static Files (Production)
+app.use(express.static("./"));
+
+// Serve React Static Files (Production)
 app.get('/', (req: Request, res: Response) => {
-    if (ENVIRONMENT === 'development') {
-        res.sendFile(path.resolve(__dirname, "/dist/index.html"))
-    } else {
-        res.sendFile(path.resolve(__dirname, "/client/index.html"))
-    }
+    res.sendFile(path.resolve(__dirname, "/index.html"))
 });
 
 // Start server

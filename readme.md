@@ -175,7 +175,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-const webpackConfig = require('./../../webpack.config.js.backup');
+const webpackConfig = require('./../../webpack.config.js');
 
 const compiler = webpack(webpackConfig);
 

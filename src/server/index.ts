@@ -23,18 +23,18 @@ if (ENVIRONMENT === 'development') {
         })
     );
     app.use(webpackHotMiddleware(compiler));
+} else {
+    // Configure Static Files (Production)
+    app.use(express.static("./"));
+
+    // Serve React Static Files (Production)
+    app.get('/', (req: Request, res: Response) => {
+        res.sendFile(path.resolve(__dirname, "/index.html"))
+    });
 }
 
 // Define API Routes
 app.get('/api/', home.get);
-
-// Configure Static Files (Production)
-app.use(express.static("./"));
-
-// Serve React Static Files (Production)
-app.get('/', (req: Request, res: Response) => {
-    res.sendFile(path.resolve(__dirname, "/index.html"))
-});
 
 // Start server
 app.listen(PORT, () => {

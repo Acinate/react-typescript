@@ -2,6 +2,7 @@
 This project implements React w/ Typescript that is served by a Node.js Express application.
 
 ### Features
+* Express API
 * Webpack bundling
 * Hot Reloading
 * Typescript
@@ -14,7 +15,6 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * and more!
 
 ### Coming soon (my excuses for not adding to project)
-* Express API (dunno what to implement as example)
 * React router (substantial bundle size increase)
 * MongoDB Database
 * MongoDB Testing with Jest

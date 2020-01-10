@@ -47,12 +47,12 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./src/server/index.ts",
-    "prod": "NODE_ENV=production nodemon ./src/server/index.ts",
     "test": "jest --projects src/react src/server",
     "build": "npm run build-client && npm run build-server",
     "build-client": "webpack --config webpack.prod.client.js",
     "build-server": "webpack --config webpack.prod.server.js",
+    "docker": "npm run build-docker && npm run start-docker",
     "build-docker": "docker build -t react-typescript .",
-    "docker": "docker run -p 8080:3000 -d react-typescript"
+    "start-docker": "docker run -p 8080:3000 react-typescript"
   }
 }

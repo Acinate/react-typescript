@@ -1,5 +1,7 @@
 import express, {Request, Response} from 'express';
 import path from 'path';
+import helmet from 'helmet';
+import morgan from 'morgan';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -7,12 +9,16 @@ import {ENVIRONMENT, PORT} from '../util/secrets';
 // Import API Routes
 import * as home from './controllers/home';
 
-const fs = require('fs');
-
+// Create express server
 const app = express();
 
-// Configure Webpack Dev Server (with React Hot-Reload)
+// Add middleware
+app.use(helmet());
+app.use(morgan('combined'));
+
+// Configure environment settings
 if (ENVIRONMENT === 'development') {
+    // Configure Webpack Dev Server (with React Hot-Reload)
     const webpackConfig = require('../../webpack.dev.js');
     const compiler = webpack(webpackConfig);
 
@@ -33,7 +39,7 @@ if (ENVIRONMENT === 'development') {
     });
 }
 
-// Define API Routes
+// Define API routes
 app.get('/api/', home.get);
 
 // Start server

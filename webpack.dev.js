@@ -1,13 +1,13 @@
 const path = require('path');
 const webpack = require("webpack");
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const dotenv = require('dotenv-webpack');
 const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(config, {
     mode: 'development',
-    devtool: 'eval-source-map',
+    devtool: 'cheap-module-source-map',
     entry: {
         app: [
             "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",

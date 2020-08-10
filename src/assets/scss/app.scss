@@ -15,11 +15,18 @@ body * {
 div.app_inner {
   text-align: center;
 
+  #h1_welcome {
+    margin-top: 0;
+    padding-top: 1rem;
+  }
+
   img {
     animation-name: spin;
     animation-duration: 5000ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    max-height: 500px;
+    max-width: 500px;
   }
 }
 

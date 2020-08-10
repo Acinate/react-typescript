@@ -1,50 +1,53 @@
-import express, {Request, Response} from 'express';
-import path from 'path';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import {ENVIRONMENT, PORT} from '../util/secrets';
+import express, {Request, Response} from "express";
+import path from "path";
+import helmet from "helmet";
+import morgan from "morgan";
+import webpack from "webpack";
+import history from "connect-history-api-fallback";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
+import {ENVIRONMENT, PORT} from "../util/secrets";
+
 // Import API Routes
-import * as home from './controllers/home';
+import * as home from "./controllers/home";
 
 // Create express server
 const app = express();
 
-// Add middleware
+// Insert express middleware
 app.use(helmet());
-app.use(morgan('combined'));
+app.use(morgan("combined"));
+app.use(history());
 
 // Configure environment settings
-if (ENVIRONMENT === 'development') {
-    // Configure Webpack Dev Server (with React Hot-Reload)
-    const webpackConfig = require('../../webpack.dev.js');
-    const compiler = webpack(webpackConfig);
+if (ENVIRONMENT === "development") {
+  // Configure Webpack Dev Server (with React Hot-Reload)
+  const webpackConfig = require("../../webpack.dev.js");
+  const compiler = webpack(webpackConfig);
 
-    app.use(
-        webpackDevMiddleware(compiler, {
-            publicPath: webpackConfig.output.publicPath,
-            stats: "errors-warnings"
-        })
-    );
-    app.use(webpackHotMiddleware(compiler));
+  app.use(
+    webpackDevMiddleware(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+      stats: "errors-warnings"
+    })
+  );
+  app.use(webpackHotMiddleware(compiler));
 } else {
-    // Configure Static Files (Production)
-    app.use(express.static("./"));
+  // Configure Static Files (Production)
+  app.use(express.static("./"));
 
-    // Serve React Static Files (Production)
-    app.get('/', (req: Request, res: Response) => {
-        res.sendFile(path.resolve(__dirname, "/index.html"))
-    });
+  // Serve React Static Files (Production)
+  app.get("/", (req: Request, res: Response) => {
+    res.sendFile(path.resolve(__dirname, "/index.html"))
+  });
 }
 
 // Define API routes
-app.get('/api/', home.get);
+app.get("/api/", home.get);
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Express started on http://localhost:${PORT}/ in ${ENVIRONMENT} mode.`);
+  console.log(`Express started on http://localhost:${PORT}/ in ${ENVIRONMENT} mode.`);
 });
 
 export default app;

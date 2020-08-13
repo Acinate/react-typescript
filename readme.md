@@ -17,4 +17,4 @@ This project implements React w/ Typescript that is served by a Node.js Express 
 * Material UI with Navbar & Sidebar
 
 ### Needs Fixing
-* Docker should use PM2 instead of Nodemon for Production Environment
+* ~~Docker should use PM2 instead of Nodemon for Production Environment~~
